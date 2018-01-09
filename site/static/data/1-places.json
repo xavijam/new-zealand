@@ -1,0 +1,35 @@
+{
+	"features": [
+		{
+			"name": "Christchurch",
+			"type": "city",
+			"anchor": "middle",
+			"offset": [-8, -8],
+			"lngLat": [172.566331, -43.489975]
+		}, {
+			"name": "McGregor",
+			"type": "lake",
+			"anchor": "start",
+			"offset": [6, 12],
+			"lngLat": [170.467239, -43.938723]
+		}, {
+			"name": "Tekapo",
+			"type": "lake",
+			"anchor": "start",
+			"offset": [5, -5],
+			"lngLat": [170.526009, -43.925060]
+		}, {
+			"name": "Geraldine",
+			"type": "city",
+			"anchor": "middle",
+			"offset": [0, -6],
+			"lngLat": [171.243735, -44.091185]
+		}, {
+			"name": "Ashburton",
+			"type": "city",
+			"anchor": "start",
+			"offset": [7, 5],
+			"lngLat": [171.748567, -43.908381]
+		}
+	]
+}

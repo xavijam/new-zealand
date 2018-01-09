@@ -1,0 +1,26 @@
+@import 'vars';
+@import 'colors';
+
+// Hello footer
+
+footer {
+  margin: 200px auto 30px;
+  text-align: center;
+}
+
+footer .twitter {
+  $twitter-color: #00aced;
+  color: $twitter-color;
+  text-decoration: none;
+
+  &:hover {
+    color: darken($twitter-color, 10%);
+    text-decoration: none;
+  }
+}
+
+@media (max-width: $layout-mobile) {
+	footer {
+		margin-top: 100px;
+	}
+}

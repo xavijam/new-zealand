@@ -1,0 +1,49 @@
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+
+<meta name="description" content="{{if .IsHome}}{{ .Site.Params.description }}{{else}}{{.Description | safeHTML}}{{end}}">
+
+<meta name="keywords" content="{{ with .Keywords }}{{ . }}{{ else }}{{ .Site.Params.keywords }}{{ end }}" />
+<meta name="distribution" content="Global">
+<meta name="author" content="{{ .Site.Params.author }}">
+<meta name="detail" content="{{ .Site.Params.author }} personal webpage">
+
+<meta name="DC.title" content="{{ .Site.Params.author }}">
+<meta name="geo.region" content="ES-M">
+<meta name="geo.placename" content="Madrid">
+<meta name="geo.position" content="40.4166909, -3.7003454">
+<meta name="ICBM" content="40.4166909, -3.7003454">
+
+<meta property="og:title" content="{{ .Title }}"/>
+<meta property="og:description" content="{{if .IsHome}}{{ .Site.Params.description }}{{else}}{{.Description | safeHTML}}{{end}}"/>
+{{ if .IsPage }}
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="{{ .Date.Format "2006-01-02" }}">
+{{ else }}
+<meta property="og:type" content="website">
+{{ end }}
+<meta property="og:url" content="{{ .Site.Params.siteURL }}" />
+<meta property="og:site_name" content="{{ .Site.Title }}"/>
+<meta property="og:image" content="{{ if .Params.image }}{{ .Site.Params.siteURL }}{{ .Params.image }}{{ else }}{{ .Site.Params.siteURL }}{{ .Site.Params.thumbnail }}{{ end }}"/>
+{{ range .Params.tags }}
+  <meta property="og:tags" content="{{ . }}">
+{{ end }}
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@{{ .Site.Params.social.twitter }}">
+<meta name="twitter:title" content="{{ .Title }}">
+<meta name="twitter:description" content="{{if .IsHome}}{{ .Site.Params.description }}{{else}}{{.Description | safeHTML}}{{end}}">
+<meta name="twitter:creator" content="@{{ .Site.Params.social.twitter }}">
+<meta name="twitter:image:src" content="{{ if .Params.image }}{{ .Site.Params.siteURL }}{{ .Params.image }}{{ else }}{{ .Site.Params.siteURL }}{{ .Site.Params.thumbnail }}{{ end }}">
+<meta name="twitter:domain" content="{{ .Site.Params.siteURL }}">
+
+<link href="/favicon.ico" rel="icon">
+{{ range .Translations }}
+  <link rel=”alternate” hreflang=”{{ .Lang }}” href=”{{ .Permalink }}” />
+{{ end }}
+
+
+{{ .Hugo.Generator }}

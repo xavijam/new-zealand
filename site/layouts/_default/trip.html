@@ -1,0 +1,111 @@
+{{ define "header" }}&nbsp;{{ end }}
+
+{{ define "main" }}
+	<div class="Trip">
+		<div class="Trip-header">
+			<div class="Trip-headerBkg js-imageContainer">
+				<img src="/{{ .Params.image }}" alt="{{ .Params.title }}" title="{{ .Params.title }}" />
+			</div>
+
+			<nav class="Trip-siteNavigation">
+				{{ range .Translations }}
+			    <a class="flag" href="{{ .Permalink }}">
+			    	{{- $svgPartial := ( printf "svg/%s.svg" .Lang ) -}}
+			    	{{ partial $svgPartial . }}
+			    </a>
+			  {{ end }}
+				<a href="{{ .Site.Params.siteURL }}">
+					<i class="fa fa-times fa-lg is-txtWhite"></i>
+				</a>
+			</nav>
+
+			<div class="Trip-headerTitle">
+				<p class="Text is-caption is-txtWhite is-upcase">{{ i18n "days" 1 }} {{ .Params.day }}</p>
+				<h2 class="Title is-jumbo is-txtWhite">{{ .Params.title }}</h2>
+				<p class="Text is-subtitle is-txtWhite">{{ .Params.description }}.</p>
+			</div>
+
+			<ul class="Trip-headerInfo is-upcase">
+				<li class="Trip-headerInfoItem">
+					<h4 class="Text is-subheader is-semibold is-txtWhite">{{ .Params.photos }}</h4>
+					<span class="Text is-small is-txtWhite">{{ i18n "photos" .Params.photos }}</span>
+				</li>
+				<li class="Trip-headerInfoItem">
+					<h4 class="Text is-subheader is-semibold is-txtWhite">{{ .Params.videos }}</h4>
+					<span class="Text is-small is-txtWhite">{{ i18n "videos" .Params.videos }}</span>
+				</li>
+				<li class="Trip-headerInfoItem">
+					<h4 class="Text is-subheader is-semibold is-txtWhite">{{ .Params.distance }}</h4>
+					<span class="Text is-small is-txtWhite">{{ i18n "distance" .Params.distance }}</span>
+				</li>
+				<li class="Trip-headerInfoItem is-last">
+					<h4 class="Text is-subheader is-semibold is-txtWhite">{{ .Params.pois }}</h4>
+					<span class="Text is-small is-txtWhite">{{ i18n "pois" .Params.pois }}</span>
+				</li>
+			</ul>
+
+			<div class="Trip-headerAnimation icon-scroll"></div>
+
+			<div class="Trip-navigation is-fake js-fakeNavigation"></div>
+
+			<div class="Trip-navigation js-navigation">
+				{{- $tripCount := len (where .Site.Pages "Section" "==" "trip") -}}
+				<p class="Trip-navigationTitle Text is-caption is-txtWhite is-upcase">{{ i18n "days" $tripCount }}</p>
+
+				<nav class="Trip-navigationItems">
+					{{ with .Prev }}
+						{{ if eq .Type "trip" }}
+							<a href="{{ .RelPermalink }}" class="Trip-navigationPrev">
+								<i class="fa fa-arrow-left"></i>
+							</a>
+						{{ end }}
+					{{ else }}
+						<a class="Trip-navigationPrev is-disabled">
+							<i class="fa fa-arrow-left"></i>
+						</a>
+					{{ end }}
+
+					{{ range (where $.Site.Pages ".Type" "trip").ByParam "day" }}
+						{{ if .Params.day }}
+					  	<a href="{{ .URL }}" class="Trip-navigationItem {{ if eq .Params.day $.Params.day }} is-selected {{ else }} js-tippy {{ end }}" data-tippy-theme="light bordered" data-tippy-arrow="true" data-tippy-distance="15" title="{{ .Title}}">{{ .Params.day }}</a>
+						{{ end }}
+					{{ end }}
+
+					{{ with .Next }}
+						{{ if eq .Type "trip" }}
+							<a href="{{ .RelPermalink }}" class="Trip-navigationNext">
+								<i class="fa fa-arrow-right"></i>
+							</a>
+						{{ end }}
+					{{ else }}
+						<a class="Trip-navigationNext is-disabled">
+							<i class="fa fa-arrow-right"></i>
+						</a>
+					{{ end }}
+				</nav>
+			</div>
+		</div>
+
+		<div class="Trip-content js-content">
+			<div class="Trip-contentMap js-map"></div>
+			<div class="Trip-contentText">
+				{{ .Content }}
+
+				{{ if .Params.gallery }}
+					<div class="Trip-gallery">
+						{{ range .Params.gallery }}
+							<img src={{ . }} title="" alt="" data-zoom="zoom" />
+						{{ end }}
+					</div>
+				{{ end }}
+			</div>
+		</div>
+	</div>
+{{ end }}
+
+{{ define "site/scripts" }}
+	<script>
+		var day = {{ .Params.day }};
+	</script>
+	<script src="{{ "js/trip.js" | relURL }}"></script>
+{{ end }}

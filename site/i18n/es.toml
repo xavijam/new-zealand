@@ -1,0 +1,16 @@
+[days]
+one = "día"
+other = "días"
+[photos]
+one = "foto"
+other = "fotos"
+[videos]
+one = "video"
+other = "videos"
+[distance]
+one = "kilómetro"
+other = "kilómetros"
+[pois]
+other = "visitas"
+[thanks]
+other = "Gracias, porque gracias a tí hemos podido vivir todo esto"

@@ -1,0 +1,10 @@
+@import 'vars';
+
+@each $name, $color in $colors {
+  .is-bg#{$name} {
+    background: #{$color};
+  }
+  .is-txt#{$name} {
+    color: #{$color};
+  }
+}

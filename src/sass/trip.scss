@@ -1,0 +1,500 @@
+
+.Trip {
+	position: relative;
+	margin: 10px;
+}
+
+.Trip-header {
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	height: 70vh;
+	min-height: 650px;
+	margin: 0;
+	padding: 0;
+}
+
+.Trip-headerBkg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 0;
+	overflow: hidden;
+	border-radius: 4px;
+}
+
+.Trip-headerBkg img {
+	height: 100%;
+}
+.Trip-headerBkg::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: linear-gradient(to right, rgba(#000, 0.5), rgba(#000, 0.4) 60%, rgba(#000, 0.4) 100%);
+	z-index: 1;
+}
+
+.Trip-siteNavigation {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	width: 50px;
+	z-index: 1;
+}
+
+.Trip-headerTitle,
+.Trip-navigation {
+	position: relative;
+	z-index: 1;
+}
+
+.Trip-headerTitle {
+	flex: 1;
+	margin-left: 60px;
+}
+
+.Trip-headerInfo {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	padding: 0;
+	list-style: none;
+	text-align: right;
+	z-index: 1;
+}
+
+.Trip-headerInfoItem {
+	position: relative;
+	padding: 15px 60px 15px 10px;
+
+	&:after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		width: 150px;
+		height: 1px;
+		background: rgba(#FFF, 0.25);
+	}
+}
+.Trip-headerInfoItem.is-last {
+	&:after {
+		display: none;
+	}
+}
+.Trip-headerInfoItem h4 {
+	line-height: 25px;
+}
+
+.Trip-headerAnimation {
+	position: absolute;
+	left: 50%;
+	bottom: 80px;
+	margin: 0;
+	transform: translateX(-50%);
+}
+
+.Trip-navigation {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: absolute;
+	right: 60px;
+	bottom: -45px;
+	left: 60px;
+	padding: 0 40px;
+	background: $main-color;
+	z-index: 2;
+}
+.Trip-navigation.is-fake {
+	bottom: 50px;
+	height: 1;
+}
+.Trip-navigationTitle {
+	padding: 15px 30px 15px 0;
+	margin: 20px 0;
+	border-right: 1px solid #FFF;
+}
+.Trip-navigationItems {
+	flex: 10;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-left: 30px;
+}
+.Trip-navigationItem {
+	width: 50px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	border-radius: 100%;
+	background: $main-color;
+	color: #FFF;
+	text-decoration: none;
+}
+.Trip-navigationItem:hover {
+	background: #FFF;
+	color: $main-color;
+}
+.Trip-navigationNext,
+.Trip-navigationPrev {
+	color: #FFF;
+	display: none;
+}
+.Trip-navigationNext {
+	margin-left: 10px;
+}
+.Trip-navigationPrev {
+	margin-right: 10px;
+}
+.Trip-navigationNext.is-disabled,
+.Trip-navigationPrev.is-disabled {
+	color: rgba(#FFF, 0.3);
+	&:hover {
+		cursor: default;
+		color: rgba(#FFF, 0.3);
+	}
+}
+
+.Trip-navigationItem.is-selected {
+	background: #FFF;
+	color: $main-color;
+	&:hover {
+		cursor: default;
+	}
+}
+.Trip-navigation.is-fixed {
+	position: fixed;
+	top: 0;
+	right: 70px;
+	bottom: auto;
+	left: 70px;
+	background: rgba($main-color, 0.9);
+	border-radius: 2px;
+
+	.Trip-navigationTitle {
+		margin: 15px 0;
+		padding: 0 30px 0 0;
+	}
+
+	.Trip-navigationItem {
+		width: 30px;
+		height: 30px;
+		line-height: 30px;
+		margin: 5px;
+		background: rgba($main-color, 0);
+
+		&:hover {
+			background: #FFF;
+			color: $main-color;
+		}
+	}
+
+	.Trip-navigationItem.is-selected {
+		background: #FFF;
+	}
+}
+
+.Trip-content {
+	display: flex;
+	justify-content: center;
+	margin-top: 150px;
+}
+
+.Trip-contentMap {
+	display: block;
+	width: 480px;
+	height: 480px;
+	margin: 0 20px;
+}
+
+.Trip-contentText {
+	width: 480px;
+	margin: 0 20px;
+}
+
+.Trip-contentText p {
+	font-family: 'Lato';
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 32px;
+  color: #333;
+}
+
+.Trip-contentText img {
+	width: 45%;
+	border-radius: 2px;
+	margin: 0;
+	padding: 2px;
+	border: 1px solid rgba($base-grey, 0.5);
+	&[data-zoom='zoom']:hover {
+		border-color: $main-color;
+	}
+}
+
+// hack
+.Trip-contentText em {
+	display: block;
+	line-height: 1px;
+	opacity: 0;
+	overflow: hidden;
+}
+
+.Trip-gallery {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.Trip-gallery img {
+	flex: 1;
+	width: 25%;
+	margin: 5px;
+}
+
+.Trip-contentText img.is-righty,
+.Trip-contentText img.is-lefty {
+	width: 44%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.Trip-contentText img.is-righty {
+	float: right;
+	margin-left: 15px;
+}
+
+.Trip-contentText img.is-lefty {
+	float: left;
+	margin-right: 15px;
+}
+
+.Trip-contentText img.is-full {
+	width: 100%;
+}
+
+.zoom-media-wrap img {
+	border: none;
+}
+
+.Trip-contentText blockquote {
+	margin: 0 20px 20px;
+	padding: 0 10px 10px;
+
+	p {
+		line-height: 36px;
+		font-size: 26px;
+		color: $main-color;
+	}
+}
+
+.Trip-backLine {
+	fill: none;
+	stroke-width: 1.5;
+	stroke: $base-grey;
+	stroke-dasharray: 2,4;
+}
+
+.Trip-mainLine {
+	fill: none;
+  stroke-width: 2;
+  stroke: $main-color;
+}
+
+.Trip-point {
+	fill: $main-color;
+	stroke: #FFF;
+	stroke-width: 1.5;
+}
+
+.Trip-label {
+	font-size: 10px;
+	font-weight: bold;
+	fill: $base-grey;
+}
+
+
+@media (max-width: $layout-mobile) and (orientation: landscape) {
+	.Trip-header {
+		min-height: 600px;
+	}
+
+	.Trip-headerTitle {
+		margin: 0 30px;
+	}
+
+	.Trip-headerInfoItem {
+		padding-right: 30px;
+		&:after {
+			width: 120px;
+		}
+	}
+
+	.Trip-navigation {
+ 		right: 30px;
+ 		left: 30px;
+ 		bottom: -30px;
+	}
+
+	.Trip-navigationTitle {
+		padding: 5px 30px 5px 0;
+	}
+
+	.Trip-navigationItem {
+   	width: 30px;
+   	height: 30px;
+   	line-height: 30px;
+	}
+
+	.Trip-navigation.is-fixed {
+		top: 5px;
+		right: 40px;
+		left: 40px;
+	}
+
+	.Trip-headerAnimation {
+		bottom: 50px;
+		transform: translateX(-50%) scale(0.6);
+	}
+
+	.Trip-content {
+		margin-top: 70px;
+	}
+
+	.Trip-contentMap {
+		width: 47%;
+		height: 80vh;
+	}
+
+	.Trip-contentText {
+		width: 43%;
+	}
+
+	.Trip-contentText p {
+		font-size: 16px;
+    line-height: 24px;
+	}
+}
+
+
+@media (max-width: $layout-mobile) and (orientation: portrait) {
+	.Trip-header {
+		flex-direction: column;
+		justify-content: center;
+		align-items: flex-start;
+		height: 93vh;
+	}
+
+	.Trip-headerInfo,
+	.Trip-headerTitle {
+		flex: none;
+	}
+
+	.Trip-headerTitle {
+		margin: 0 30px;
+	}
+
+	.Trip-headerInfo {
+		flex-direction: row;
+		justify-content: space-around;
+		margin: 20px 30px 0;
+		text-align: center;
+	}
+
+	.Trip-headerInfoItem {
+		padding: 0 10px 0 0;
+		margin: 0 10px 0 0;
+	}
+
+	.Trip-headerInfoItem:after {
+		width: 1px;
+		height: 100%;
+		top: 0;
+		right: 0;
+		bottom: auto;
+	}
+
+	.Trip-headerAnimation {
+		bottom: 50px;
+		transform: translateX(-50%) scale(0.6);
+	}
+
+	.Trip-navigation {
+ 		right: 30px;
+ 		left: 30px;
+ 		bottom: -30px;
+	}
+
+	.Trip-navigationTitle {
+		padding: 5px 30px 5px 0;
+	}
+
+	.Trip-navigationItem {
+		display: none;
+	}
+
+	.Trip-navigationNext,
+	.Trip-navigationPrev,
+	.Trip-navigationItem.is-selected {
+   	display: block;
+	}
+
+	.Trip-navigationItem.is-selected {
+   	width: 30px;
+   	height: 30px;
+   	line-height: 30px;
+	}
+
+	.Trip-navigation.is-fixed {
+   	top: 5px;
+   	left: 50%;
+   	right: auto;
+   	width: auto;
+   	padding: 0 10px;
+   	transform: translateX(-50%);
+
+   	.Trip-navigationTitle {
+	   	display: none;
+		}
+
+		.Trip-navigationItems {
+			margin-left: 0;
+		}
+	}
+
+	.Trip-content {
+		flex-direction: column;
+		margin-top: 30px;
+	}
+
+	.Trip-contentMap {
+		width: 100%;
+		height: 33vh;
+		margin: 0;
+		border-bottom: 1px solid rgba($base-grey, 0.2);
+		overflow: hidden;
+		background: rgba($background-color, 0.8);
+	}
+
+	.Trip-contentText {
+		display: block;
+		width: auto;
+	}
+
+	.Trip-contentText p {
+		font-size: 16px;
+    line-height: 24px;
+	}
+}

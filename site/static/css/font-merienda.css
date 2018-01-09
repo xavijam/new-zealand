@@ -1,0 +1,13 @@
+@font-face {
+  font-family: 'Merienda';
+  src:  url('/fonts/Merienda-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Merienda';
+  src:  url('/fonts/Merienda-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
