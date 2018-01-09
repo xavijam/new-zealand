@@ -9,7 +9,7 @@ Taking for granted you have installed [node](http://nodejs.org) and you are usin
 ```
 brew install hugo
 npm install
-npm run server
+npm run start
 ```
 
 ### Release
