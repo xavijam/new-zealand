@@ -22,14 +22,15 @@ const hugoSpawn = isProduction ? './bin/hugo' : 'hugo';
 
 // Hugo arguments
 const hugoArgsDefault = ["-d", "../public", "-s", "site", "-v"];
-const hugoArgsPreview = ["--buildDrafts", "--buildFuture"];
+const hugoArgsPreview = ["--buildDrafts", "--buildFuture", hugoConfig];
+const hugoConfig = [!isProduction ? '--config=site/development-config.toml' : '--config=site/production-config.toml'];
 
 // Development tasks
-gulp.task("hugo", (cb) => buildSite(cb));
+gulp.task("hugo", (cb) => buildSite(cb, hugoConfig));
 gulp.task("hugo-preview", (cb) => buildSite(cb, hugoArgsPreview));
 
 // Build/production tasks
-gulp.task("build", ["fonts", "sass", "js", "images"], (cb) => buildSite(cb, [], ['css-compress', 'html']));
+gulp.task("build", ["fonts", "sass", "js", "images"], (cb) => buildSite(cb, hugoConfig, ['css-compress', 'html']));
 gulp.task("build-preview", ["fonts", "sass", "js", "images"], (cb) => buildSite(cb, hugoArgsPreview, "production"));
 
 gulp.task('sass', () => {

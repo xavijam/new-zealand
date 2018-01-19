@@ -1,0 +1,33 @@
+baseURL = "/"
+languageCode = "en-us"
+title = "New Zealand"
+
+googleAnalytics = ""
+enableemoji = true
+enableRobotsTXT = true
+disableAliases = false
+
+[params]
+author = "Javier Álvarez Medina"
+siteURL = "/"
+description = "Our special trip around New Zealand in 2017"
+keywords = "trip,new zealand,van,campervan,honeymoon,auckland,christchurch,milford sound"
+thumbnail = "images/thumbnail.png"
+[params.social]
+twitter = "xavijam"
+github = "xavijam"
+facebook = "jamedina"
+linkedin = "javieralvarezmedina"
+email = "xavijam@gmail.com"
+
+[Languages]
+[Languages.en]
+languageName = "English"
+weight = 1
+
+[Languages.es]
+languageName = "Español"
+weight = 2
+title = "Nueza Zelanda"
+description = "Nuestro increible viaje por Nueva Zelanda en 2017"
+keywords = "viaje,caravana,autocaravana,nueva zelanda,auckland,christchurch,milford sound"
