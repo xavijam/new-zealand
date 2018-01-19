@@ -1,257 +1,258 @@
 @import 'vars';
 
 .Trip {
-	position: relative;
-	margin: 10px;
+  position: relative;
+  margin: 10px;
 }
 
 .Trip-header {
-	position: relative;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: center;
-	width: 100%;
-	height: 70vh;
-	min-height: 650px;
-	margin: 0;
-	padding: 0;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 70vh;
+  min-height: 650px;
+  margin: 0;
+  padding: 0;
 }
 
 .Trip-headerBkg {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 0;
-	overflow: hidden;
-	border-radius: 4px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+  border-radius: 4px;
 }
 
 .Trip-headerBkg img {
-	height: 100%;
+  height: 100%;
 }
+
 .Trip-headerBkg::after {
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background: linear-gradient(to right, rgba(#000, 0.5), rgba(#000, 0.4) 60%, rgba(#000, 0.4) 100%);
-	z-index: 20;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to right, rgba(#000, 0.5), rgba(#000, 0.4) 60%, rgba(#000, 0.4) 100%);
+  z-index: 20;
 }
 
 .Trip-siteNavigation {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	position: absolute;
-	left: 0;
-	right: 0;
-	top: 30px;
-	margin: 30px 60px 0;
-	z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 30px;
+  margin: 30px 60px 0;
+  z-index: 1;
 }
 
 .Trip-siteNavigationLink {
-	color: rgba(#FFF, 0.5);
-	text-decoration: none;
+  color: rgba(#FFF, 0.5);
+  text-decoration: none;
 
-	&:hover {
-		color: #FFF;
-	}
+  &:hover {
+    color: #FFF;
+  }
 }
 
 .Trip-headerTitle,
 .Trip-navigation {
-	position: relative;
-	z-index: 1;
+  position: relative;
+  z-index: 1;
 }
 
 .Trip-headerTitle {
-	flex: 1;
-	margin-left: 60px;
+  flex: 1;
+  margin-left: 60px;
 }
 
 .Trip-nzMap {
-	display: flex;
-	flex: 1;
-	flex-direction: column;
-	padding: 0;
-	list-style: none;
-	text-align: right;
-	z-index: 1;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 0;
+  list-style: none;
+  text-align: right;
+  z-index: 1;
 }
 
 .Trip-headerInfoItem {
-	position: relative;
-	padding: 15px 60px 15px 10px;
+  position: relative;
+  padding: 15px 60px 15px 10px;
 
-	&:after {
-		content: '';
-		position: absolute;
-		bottom: 0;
-		right: 0;
-		width: 150px;
-		height: 1px;
-		background: rgba(#FFF, 0.25);
-	}
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 150px;
+    height: 1px;
+    background: rgba(#FFF, 0.25);
+  }
 }
 .Trip-headerInfoItem.is-last {
-	&:after {
-		display: none;
-	}
+  &:after {
+    display: none;
+  }
 }
 .Trip-headerInfoItem h4 {
-	line-height: 25px;
+  line-height: 25px;
 }
 
 .Trip-headerAnimation {
-	position: absolute;
-	left: 50%;
-	bottom: 80px;
-	margin: 0;
-	transform: translateX(-50%);
+  position: absolute;
+  left: 50%;
+  bottom: 80px;
+  margin: 0;
+  transform: translateX(-50%);
 }
 
 .Trip-navigation {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	position: absolute;
-	right: 60px;
-	bottom: -45px;
-	left: 60px;
-	padding: 0 40px;
-	background: $main-color;
-	z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  right: 60px;
+  bottom: -45px;
+  left: 60px;
+  padding: 0 40px;
+  background: $main-color;
+  z-index: 2;
 }
 .Trip-navigation.is-fake {
-	bottom: 50px;
-	height: 1;
+  bottom: 50px;
+  height: 1;
 }
 .Trip-navigationTitle {
-	padding: 15px 30px 15px 0;
-	margin: 20px 0;
-	border-right: 1px solid #FFF;
+  padding: 15px 30px 15px 0;
+  margin: 20px 0;
+  border-right: 1px solid #FFF;
 }
 .Trip-navigationItems {
-	flex: 10;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin-left: 30px;
+  flex: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 30px;
 }
 .Trip-navigationItem {
-	width: 50px;
-	height: 50px;
-	line-height: 50px;
-	text-align: center;
-	border-radius: 100%;
-	background: $main-color;
-	color: #FFF;
-	text-decoration: none;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  border-radius: 100%;
+  background: $main-color;
+  color: #FFF;
+  text-decoration: none;
 }
 .Trip-navigationItem:hover {
-	background: #FFF;
-	color: $main-color;
+  background: #FFF;
+  color: $main-color;
 }
 .Trip-navigationNext,
 .Trip-navigationPrev {
-	color: #FFF;
-	display: none;
+  color: #FFF;
+  display: none;
 }
 .Trip-navigationNext {
-	margin-left: 10px;
+  margin-left: 10px;
 }
 .Trip-navigationPrev {
-	margin-right: 10px;
+  margin-right: 10px;
 }
 .Trip-navigationNext.is-disabled,
 .Trip-navigationPrev.is-disabled {
-	color: rgba(#FFF, 0.3);
-	&:hover {
-		cursor: default;
-		color: rgba(#FFF, 0.3);
-	}
+  color: rgba(#FFF, 0.3);
+  &:hover {
+    cursor: default;
+    color: rgba(#FFF, 0.3);
+  }
 }
 
 .Trip-navigationItem.is-selected {
-	background: #FFF;
-	color: $main-color;
-	&:hover {
-		cursor: default;
-	}
+  background: #FFF;
+  color: $main-color;
+  &:hover {
+    cursor: default;
+  }
 }
 .Trip-navigation.is-fixed {
-	position: fixed;
-	top: 0;
-	right: 70px;
-	bottom: auto;
-	left: 70px;
-	background: rgba($main-color, 0.9);
-	border-radius: 2px;
+  position: fixed;
+  top: 0;
+  right: 70px;
+  bottom: auto;
+  left: 70px;
+  background: rgba($main-color, 0.9);
+  border-radius: 2px;
 
-	.Trip-navigationTitle {
-		margin: 15px 0;
-		padding: 0 30px 0 0;
-	}
+  .Trip-navigationTitle {
+    margin: 15px 0;
+    padding: 0 30px 0 0;
+  }
 
-	.Trip-navigationItem {
-		width: 30px;
-		height: 30px;
-		line-height: 30px;
-		margin: 5px;
-		background: rgba($main-color, 0);
+  .Trip-navigationItem {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    margin: 5px;
+    background: rgba($main-color, 0);
 
-		&:hover {
-			background: #FFF;
-			color: $main-color;
-		}
-	}
+    &:hover {
+      background: #FFF;
+      color: $main-color;
+    }
+  }
 
-	.Trip-navigationItem.is-selected {
-		background: #FFF;
-	}
+  .Trip-navigationItem.is-selected {
+    background: #FFF;
+  }
 }
 
 .Trip-content {
-	display: flex;
-	justify-content: center;
-	margin-top: 150px;
+  display: flex;
+  justify-content: center;
+  margin-top: 150px;
 }
 
 .Trip-contentMap {
-	display: block;
-	width: 480px;
-	height: 480px;
-	margin: 0 20px;
+  display: block;
+  width: 480px;
+  height: 480px;
+  margin: 0 20px;
 }
 
 .Trip-contentMapInfo {
-	position: absolute;
-	list-style: none;
-	width: auto;
-	margin: 0;
-	padding: 0;
-	&.is-top { top: 20px; }
-	&.is-right {
-		text-align: right;
-		right: 20px;
-	}
-	&.is-bottom { bottom: 20px; }
-	&.is-left { left: 20px; }
+  position: absolute;
+  list-style: none;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  &.is-top { top: 20px; }
+  &.is-right {
+    text-align: right;
+    right: 20px;
+  }
+  &.is-bottom { bottom: 20px; }
+  &.is-left { left: 20px; }
 }
 
 .Trip-contentText {
-	width: 480px;
-	margin: 0 20px;
+  width: 480px;
+  margin: 0 20px;
 }
 
 .Trip-contentText p {
-	font-family: 'Lato';
+  font-family: 'Lato';
   font-weight: 400;
   font-size: 18px;
   line-height: 32px;
@@ -259,95 +260,95 @@
 }
 
 .Trip-contentText img {
-	width: 45%;
-	border-radius: 2px;
-	margin: 0;
-	padding: 2px;
-	border: 1px solid rgba($base-grey, 0.5);
-	&[data-zoom='zoom']:hover {
-		border-color: $main-color;
-	}
+  width: 45%;
+  border-radius: 2px;
+  margin: 0;
+  padding: 2px;
+  border: 1px solid rgba($base-grey, 0.5);
+  &[data-zoom='zoom']:hover {
+    border-color: $main-color;
+  }
 }
 
 // hack
 .Trip-contentText em {
-	display: block;
-	line-height: 1px;
-	opacity: 0;
-	overflow: hidden;
+  display: block;
+  line-height: 1px;
+  opacity: 0;
+  overflow: hidden;
 }
 
 .Trip-gallery {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .Trip-gallery img {
-	flex: 1;
-	width: 25%;
-	margin: 5px;
+  flex: 1;
+  width: 25%;
+  margin: 5px;
 }
 
 .Trip-contentText img.is-righty,
 .Trip-contentText img.is-lefty {
-	width: 44%;
-	margin-top: 10px;
-	margin-bottom: 10px;
+  width: 44%;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .Trip-contentText img.is-righty {
-	float: right;
-	margin-left: 15px;
+  float: right;
+  margin-left: 15px;
 }
 
 .Trip-contentText img.is-lefty {
-	float: left;
-	margin-right: 15px;
+  float: left;
+  margin-right: 15px;
 }
 
 .Trip-contentText img.is-full {
-	width: 100%;
+  width: 100%;
 }
 
 .Trip-contentText blockquote {
-	margin: 0 20px 20px;
-	padding: 0 10px 10px;
+  margin: 0 20px 20px;
+  padding: 0 10px 10px;
 
-	p {
-		line-height: 36px;
-		font-size: 26px;
-		color: $main-color;
-	}
+  p {
+    line-height: 36px;
+    font-size: 26px;
+    color: $main-color;
+  }
 }
 
 .Trip-backLine {
-	fill: none;
-	stroke-width: 1.5;
-	stroke: $light-grey;
-	stroke-dasharray: 2,4;
+  fill: none;
+  stroke-width: 1.5;
+  stroke: $light-grey;
+  stroke-dasharray: 2,4;
 }
 
 .Trip-mainLine {
-	fill: none;
+  fill: none;
   stroke-width: 2;
   stroke: $main-color;
 }
 
 .Trip-point {
-	fill: $main-color;
-	stroke: #FFF;
-	stroke-width: 1.5;
+  fill: $main-color;
+  stroke: #FFF;
+  stroke-width: 1.5;
 }
 
 .Trip-label {
-	font-size: 10px;
-	font-weight: bold;
-	fill: $light-grey;
+  font-size: 10px;
+  font-weight: bold;
+  fill: $light-grey;
 }
 
 .medium-zoom-image,
 .medium-zoom-overlay {
-	z-index: 10;
+  z-index: 10;
 }
