@@ -1,3 +1,4 @@
+@import 'vars';
 
 .Trip {
 	position: relative;
@@ -31,7 +32,7 @@
 .Trip-headerBkg img {
 	height: 100%;
 }
-.Trip-headerBkg::before {
+.Trip-headerBkg::after {
 	content: '';
 	position: absolute;
 	top: 0;
@@ -39,7 +40,7 @@
 	right: 0;
 	bottom: 0;
 	background: linear-gradient(to right, rgba(#000, 0.5), rgba(#000, 0.4) 60%, rgba(#000, 0.4) 100%);
-	z-index: 1;
+	z-index: 20;
 }
 
 .Trip-siteNavigation {
@@ -47,10 +48,20 @@
 	align-items: center;
 	justify-content: space-between;
 	position: absolute;
-	right: 10px;
-	top: 10px;
-	width: 50px;
+	left: 0;
+	right: 0;
+	top: 30px;
+	margin: 30px 60px 0;
 	z-index: 1;
+}
+
+.Trip-siteNavigationLink {
+	color: rgba(#FFF, 0.5);
+	text-decoration: none;
+
+	&:hover {
+		color: #FFF;
+	}
 }
 
 .Trip-headerTitle,
@@ -64,7 +75,7 @@
 	margin-left: 60px;
 }
 
-.Trip-headerInfo {
+.Trip-nzMap {
 	display: flex;
 	flex: 1;
 	flex-direction: column;
@@ -219,6 +230,21 @@
 	margin: 0 20px;
 }
 
+.Trip-contentMapInfo {
+	position: absolute;
+	list-style: none;
+	width: auto;
+	margin: 0;
+	padding: 0;
+	&.is-top { top: 20px; }
+	&.is-right {
+		text-align: right;
+		right: 20px;
+	}
+	&.is-bottom { bottom: 20px; }
+	&.is-left { left: 20px; }
+}
+
 .Trip-contentText {
 	width: 480px;
 	margin: 0 20px;
@@ -285,10 +311,6 @@
 	width: 100%;
 }
 
-.zoom-media-wrap img {
-	border: none;
-}
-
 .Trip-contentText blockquote {
 	margin: 0 20px 20px;
 	padding: 0 10px 10px;
@@ -303,7 +325,7 @@
 .Trip-backLine {
 	fill: none;
 	stroke-width: 1.5;
-	stroke: $base-grey;
+	stroke: $light-grey;
 	stroke-dasharray: 2,4;
 }
 
@@ -322,179 +344,10 @@
 .Trip-label {
 	font-size: 10px;
 	font-weight: bold;
-	fill: $base-grey;
+	fill: $light-grey;
 }
 
-
-@media (max-width: $layout-mobile) and (orientation: landscape) {
-	.Trip-header {
-		min-height: 600px;
-	}
-
-	.Trip-headerTitle {
-		margin: 0 30px;
-	}
-
-	.Trip-headerInfoItem {
-		padding-right: 30px;
-		&:after {
-			width: 120px;
-		}
-	}
-
-	.Trip-navigation {
- 		right: 30px;
- 		left: 30px;
- 		bottom: -30px;
-	}
-
-	.Trip-navigationTitle {
-		padding: 5px 30px 5px 0;
-	}
-
-	.Trip-navigationItem {
-   	width: 30px;
-   	height: 30px;
-   	line-height: 30px;
-	}
-
-	.Trip-navigation.is-fixed {
-		top: 5px;
-		right: 40px;
-		left: 40px;
-	}
-
-	.Trip-headerAnimation {
-		bottom: 50px;
-		transform: translateX(-50%) scale(0.6);
-	}
-
-	.Trip-content {
-		margin-top: 70px;
-	}
-
-	.Trip-contentMap {
-		width: 47%;
-		height: 80vh;
-	}
-
-	.Trip-contentText {
-		width: 43%;
-	}
-
-	.Trip-contentText p {
-		font-size: 16px;
-    line-height: 24px;
-	}
-}
-
-
-@media (max-width: $layout-mobile) and (orientation: portrait) {
-	.Trip-header {
-		flex-direction: column;
-		justify-content: center;
-		align-items: flex-start;
-		height: 93vh;
-	}
-
-	.Trip-headerInfo,
-	.Trip-headerTitle {
-		flex: none;
-	}
-
-	.Trip-headerTitle {
-		margin: 0 30px;
-	}
-
-	.Trip-headerInfo {
-		flex-direction: row;
-		justify-content: space-around;
-		margin: 20px 30px 0;
-		text-align: center;
-	}
-
-	.Trip-headerInfoItem {
-		padding: 0 10px 0 0;
-		margin: 0 10px 0 0;
-	}
-
-	.Trip-headerInfoItem:after {
-		width: 1px;
-		height: 100%;
-		top: 0;
-		right: 0;
-		bottom: auto;
-	}
-
-	.Trip-headerAnimation {
-		bottom: 50px;
-		transform: translateX(-50%) scale(0.6);
-	}
-
-	.Trip-navigation {
- 		right: 30px;
- 		left: 30px;
- 		bottom: -30px;
-	}
-
-	.Trip-navigationTitle {
-		padding: 5px 30px 5px 0;
-	}
-
-	.Trip-navigationItem {
-		display: none;
-	}
-
-	.Trip-navigationNext,
-	.Trip-navigationPrev,
-	.Trip-navigationItem.is-selected {
-   	display: block;
-	}
-
-	.Trip-navigationItem.is-selected {
-   	width: 30px;
-   	height: 30px;
-   	line-height: 30px;
-	}
-
-	.Trip-navigation.is-fixed {
-   	top: 5px;
-   	left: 50%;
-   	right: auto;
-   	width: auto;
-   	padding: 0 10px;
-   	transform: translateX(-50%);
-
-   	.Trip-navigationTitle {
-	   	display: none;
-		}
-
-		.Trip-navigationItems {
-			margin-left: 0;
-		}
-	}
-
-	.Trip-content {
-		flex-direction: column;
-		margin-top: 30px;
-	}
-
-	.Trip-contentMap {
-		width: 100%;
-		height: 33vh;
-		margin: 0;
-		border-bottom: 1px solid rgba($base-grey, 0.2);
-		overflow: hidden;
-		background: rgba($background-color, 0.8);
-	}
-
-	.Trip-contentText {
-		display: block;
-		width: auto;
-	}
-
-	.Trip-contentText p {
-		font-size: 16px;
-    line-height: 24px;
-	}
+.medium-zoom-image,
+.medium-zoom-overlay {
+	z-index: 10;
 }

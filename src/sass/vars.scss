@@ -1,6 +1,7 @@
 
 $layout-mobile: 820px;
-$base-grey: #999;
+$base-grey: #666;
+$light-grey: #AAA;
 $main-color: #3E776C;
 $background-color: #FCFAF4;
 
@@ -8,5 +9,5 @@ $colors: (
 	"Main": $main-color,
   "BaseGrey": $base-grey,
   "White": #FFF,
-  "LightGrey": #AAA
+  "LightGrey": $light-grey
 );

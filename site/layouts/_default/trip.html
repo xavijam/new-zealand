@@ -1,22 +1,24 @@
 {{ define "header" }}&nbsp;{{ end }}
 
 {{ define "main" }}
+	{{ $data := index .Site.Data.days .Params.day }}
+
 	<div class="Trip">
 		<div class="Trip-header">
 			<div class="Trip-headerBkg js-imageContainer">
-				<img src="/{{ .Params.image }}" alt="{{ .Params.title }}" title="{{ .Params.title }}" />
+				<img src="/{{ $data.image }}" alt="{{ .Params.title }}" title="{{ .Params.title }}" />
 			</div>
 
 			<nav class="Trip-siteNavigation">
+        <a href="{{ .Site.Params.siteURL }}" class="Text is-caption  Trip-siteNavigationLink">
+          ← {{ i18n "back-home" }}
+        </a>
 				{{ range .Translations }}
-			    <a class="flag" href="{{ .Permalink }}">
+			    <a class="flag Trip-siteNavigationButton" href="{{ .Permalink }}">
 			    	{{- $svgPartial := ( printf "svg/%s.svg" .Lang ) -}}
 			    	{{ partial $svgPartial . }}
 			    </a>
 			  {{ end }}
-				<a href="{{ .Site.Params.siteURL }}">
-					<i class="fa fa-times fa-lg is-txtWhite"></i>
-				</a>
 			</nav>
 
 			<div class="Trip-headerTitle">
@@ -25,27 +27,9 @@
 				<p class="Text is-subtitle is-txtWhite">{{ .Params.description }}.</p>
 			</div>
 
-			<ul class="Trip-headerInfo is-upcase">
-				<li class="Trip-headerInfoItem">
-					<h4 class="Text is-subheader is-semibold is-txtWhite">{{ .Params.photos }}</h4>
-					<span class="Text is-small is-txtWhite">{{ i18n "photos" .Params.photos }}</span>
-				</li>
-				<li class="Trip-headerInfoItem">
-					<h4 class="Text is-subheader is-semibold is-txtWhite">{{ .Params.videos }}</h4>
-					<span class="Text is-small is-txtWhite">{{ i18n "videos" .Params.videos }}</span>
-				</li>
-				<li class="Trip-headerInfoItem">
-					<h4 class="Text is-subheader is-semibold is-txtWhite">{{ .Params.distance }}</h4>
-					<span class="Text is-small is-txtWhite">{{ i18n "distance" .Params.distance }}</span>
-				</li>
-				<li class="Trip-headerInfoItem is-last">
-					<h4 class="Text is-subheader is-semibold is-txtWhite">{{ .Params.pois }}</h4>
-					<span class="Text is-small is-txtWhite">{{ i18n "pois" .Params.pois }}</span>
-				</li>
-			</ul>
+			<div class="Trip-nzMap js-nzmap"></div>
 
 			<div class="Trip-headerAnimation icon-scroll"></div>
-
 			<div class="Trip-navigation is-fake js-fakeNavigation"></div>
 
 			<div class="Trip-navigation js-navigation">
@@ -87,13 +71,28 @@
 		</div>
 
 		<div class="Trip-content js-content">
-			<div class="Trip-contentMap js-map"></div>
+			<div class="Trip-contentMap js-map">
+				<ul class="Trip-contentMapInfo {{ if $data.infoPosition }}{{ range $data.infoPosition }} is-{{ . }} {{ end }}{{ end }}">
+					<li>
+						<h4 class="Text is-subheader is-semibold is-txtBaseGrey">{{ $data.pois }} <span class="Text is-small">{{ i18n "pois" $data.pois }}</span></h4>
+					</li>
+					<li>
+						<h4 class="Text is-subheader is-semibold is-txtBaseGrey">{{ $data.videos }} <span class="Text is-small">{{ i18n "videos" $data.videos }}</span></h4>
+					</li>
+					<li>
+						<h4 class="Text is-subheader is-semibold is-txtBaseGrey">{{ $data.photos }} <span class="Text is-small">{{ i18n "photos" $data.photos }}</span></h4>
+					</li>
+          <li>
+          	<h4 class="Text is-subheader is-semibold is-txtBaseGrey">{{ $data.distance }} <span class="Text is-small">{{ i18n "distance" $data.distance }}</span></h4>
+          </li>
+        </ul>
+			</div>
 			<div class="Trip-contentText">
 				{{ .Content }}
 
-				{{ if .Params.gallery }}
+				{{ if $data.gallery }}
 					<div class="Trip-gallery">
-						{{ range .Params.gallery }}
+						{{ range $data.gallery }}
 							<img src={{ . }} title="" alt="" data-zoom="zoom" />
 						{{ end }}
 					</div>

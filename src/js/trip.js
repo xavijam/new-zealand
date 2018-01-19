@@ -31,7 +31,7 @@ _.extend(Trip.prototype, {
 		mediumZoom(
 			$('[data-zoom="zoom"]'),
 			{
-				background: 'rgba(0, 0, 0, 0.9)'
+				background: 'rgba(255, 255, 255, 0.9)'
 			}
 		);
 	},

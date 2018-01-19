@@ -1,3 +1,5 @@
+[back-home]
+other = "back to home"
 [days]
 one = "day"
 other = "days"
@@ -8,8 +10,8 @@ other = "photos"
 one = "video"
 other = "videos"
 [distance]
-one = "kilometer"
-other = "kilometers"
+one = "km"
+other = "km"
 [pois]
 other = "PoIs"
 [thanks]

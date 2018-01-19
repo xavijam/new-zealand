@@ -1,0 +1,62 @@
+@media (max-width: $layout-mobile) and (orientation: landscape) {
+	.Trip-header {
+		min-height: 550px;
+	}
+
+	.Trip-siteNavigation,
+	.Trip-headerTitle {
+		margin: 0 30px;
+	}
+
+	.Trip-headerInfoItem {
+		padding-right: 30px;
+		&:after {
+			width: 120px;
+		}
+	}
+
+	.Trip-navigation {
+ 		right: 30px;
+ 		left: 30px;
+ 		bottom: -30px;
+	}
+
+	.Trip-navigationTitle {
+		padding: 5px 30px 5px 0;
+	}
+
+	.Trip-navigationItem {
+   	width: 30px;
+   	height: 30px;
+   	line-height: 30px;
+	}
+
+	.Trip-navigation.is-fixed {
+		top: 5px;
+		right: 40px;
+		left: 40px;
+	}
+
+	.Trip-headerAnimation {
+		bottom: 50px;
+		transform: translateX(-50%) scale(0.6);
+	}
+
+	.Trip-content {
+		margin-top: 70px;
+	}
+
+	.Trip-contentMap {
+		width: 47%;
+		height: 80vh;
+	}
+
+	.Trip-contentText {
+		width: 43%;
+	}
+
+	.Trip-contentText p {
+		font-size: 16px;
+    line-height: 24px;
+	}
+}
