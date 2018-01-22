@@ -80,6 +80,7 @@
   display: flex;
   flex: 1;
   flex-direction: column;
+  height: 400px;
   padding: 0;
   list-style: none;
   text-align: right;
@@ -334,6 +335,18 @@
   fill: none;
   stroke-width: 2;
   stroke: $main-color;
+}
+
+.Trip-nzLine {
+  fill: none;
+  stroke-width: .3;
+  stroke: #FFF;
+}
+
+.Trip-nzBounds {
+  stroke: red;
+  stroke-width: .8;
+  fill: rgba(red, 0.2);
 }
 
 .Trip-point {

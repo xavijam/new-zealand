@@ -4,7 +4,8 @@ import tippy from 'tippy.js';
 import ScrollMagic from 'scrollmagic';
 import imagefill from 'imagefill';
 import mediumZoom from 'medium-zoom';
-import Map from './map';
+import TripMap from './trip-map';
+import NZMap from './nz-map';
 
 
 var Trip = function (day) {
@@ -15,7 +16,8 @@ var Trip = function (day) {
 	this._initZoom();
 	this._initTooltips();
 	this._initListeners();
-	this._initMap();
+	this._initTripMap();
+	this._initNZMap();
 };
 
 _.extend(Trip.prototype, {
@@ -83,10 +85,17 @@ _.extend(Trip.prototype, {
 		this.map && this.map.setScroll(pos);
 	},
 
-	_initMap: function () {
-		this.map = new Map({
+	_initTripMap: function () {
+		this.map = new TripMap({
 			day: this.day,
 			el: '.js-map'
+		});
+	},
+
+	_initNZMap: function () {
+		this.nzmap = new NZMap({
+			day: this.day,
+			el: '.js-nzmap'
 		});
 	}
 });

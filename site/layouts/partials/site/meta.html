@@ -4,41 +4,41 @@
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
 
-<meta name="description" content="{{if .IsHome}}{{ .Site.Params.description }}{{else}}{{.Description | safeHTML}}{{end}}">
+<meta name="description" content="{{if .IsHome}}{{ .content.Site.Params.description }}{{else}}{{.content.Description | safeHTML}}{{end}}">
 
-<meta name="keywords" content="{{ with .Keywords }}{{ . }}{{ else }}{{ .Site.Params.keywords }}{{ end }}" />
+<meta name="keywords" content="{{ with .content.Keywords }}{{ . }}{{ else }}{{ .content.Site.Params.keywords }}{{ end }}" />
 <meta name="distribution" content="Global">
-<meta name="author" content="{{ .Site.Params.author }}">
-<meta name="detail" content="{{ .Site.Params.author }} personal webpage">
+<meta name="author" content="{{ .content.Site.Params.author }}">
+<meta name="detail" content="{{ .content.Site.Params.author }} personal webpage">
 
-<meta name="DC.title" content="{{ .Site.Params.author }}">
+<meta name="DC.title" content="{{ .content.Site.Params.author }}">
 <meta name="geo.region" content="ES-M">
 <meta name="geo.placename" content="Madrid">
 <meta name="geo.position" content="40.4166909, -3.7003454">
 <meta name="ICBM" content="40.4166909, -3.7003454">
 
 <meta property="og:title" content="{{ .Title }}"/>
-<meta property="og:description" content="{{if .IsHome}}{{ .Site.Params.description }}{{else}}{{.Description | safeHTML}}{{end}}"/>
+<meta property="og:description" content="{{if .IsHome}}{{ .content.Site.Params.description }}{{else}}{{.content.Description | safeHTML}}{{end}}"/>
 {{ if .IsPage }}
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="{{ .Date.Format "2006-01-02" }}">
 {{ else }}
 <meta property="og:type" content="website">
 {{ end }}
-<meta property="og:url" content="{{ .Site.Params.siteURL }}" />
-<meta property="og:site_name" content="{{ .Site.Title }}"/>
-<meta property="og:image" content="{{ if .Params.image }}{{ .Site.Params.siteURL }}{{ .Params.image }}{{ else }}{{ .Site.Params.siteURL }}{{ .Site.Params.thumbnail }}{{ end }}"/>
-{{ range .Params.tags }}
+<meta property="og:url" content="{{ .content.Site.Params.siteURL }}" />
+<meta property="og:site_name" content="{{ .content.Site.Title }}"/>
+<meta property="og:image" content="{{ if .image }}{{ .content.Site.Params.siteURL }}{{ .image }}{{ else }}{{ .content.Site.Params.siteURL }}{{ .content.Site.Params.thumbnail }}{{ end }}"/>
+{{ range .content.Params.tags }}
   <meta property="og:tags" content="{{ . }}">
 {{ end }}
 
 <meta name="twitter:card" content="summary">
-<meta name="twitter:site" content="@{{ .Site.Params.social.twitter }}">
+<meta name="twitter:site" content="@{{ .content.Site.Params.social.twitter }}">
 <meta name="twitter:title" content="{{ .Title }}">
-<meta name="twitter:description" content="{{if .IsHome}}{{ .Site.Params.description }}{{else}}{{.Description | safeHTML}}{{end}}">
-<meta name="twitter:creator" content="@{{ .Site.Params.social.twitter }}">
-<meta name="twitter:image:src" content="{{ if .Params.image }}{{ .Site.Params.siteURL }}{{ .Params.image }}{{ else }}{{ .Site.Params.siteURL }}{{ .Site.Params.thumbnail }}{{ end }}">
-<meta name="twitter:domain" content="{{ .Site.Params.siteURL }}">
+<meta name="twitter:description" content="{{if .IsHome}}{{ .content.Site.Params.description }}{{else}}{{.content.Description | safeHTML}}{{end}}">
+<meta name="twitter:creator" content="@{{ .content.Site.Params.social.twitter }}">
+<meta name="twitter:image:src" content="{{ if .image }}{{ .content.Site.Params.siteURL }}{{ .image }}{{ else }}{{ .content.Site.Params.siteURL }}{{ .content.Site.Params.thumbnail }}{{ end }}">
+<meta name="twitter:domain" content="{{ .content.Site.Params.siteURL }}">
 
 <link href="/favicon.ico" rel="icon">
 {{ range .Translations }}

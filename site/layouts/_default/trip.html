@@ -1,8 +1,12 @@
+{{ define "site/meta" }}
+  {{ $data := index .Site.Data.days .Params.day }}
+  {{ partial "site/meta.html" (dict "image" $data.image "content" .) }}
+{{ end }}
+
 {{ define "header" }}&nbsp;{{ end }}
 
 {{ define "main" }}
   {{ $data := index .Site.Data.days .Params.day }}
-
   <div class="Trip">
     <div class="Trip-header">
       <div class="Trip-headerBkg js-imageContainer">
@@ -16,7 +20,7 @@
         {{ range .Translations }}
           <a class="flag Trip-siteNavigationButton" href="{{ .Permalink }}">
             {{- $svgPartial := ( printf "svg/%s.svg" .Lang ) -}}
-            {{ partial $svgPartial . }}
+            {{ partialCached $svgPartial . }}
           </a>
         {{ end }}
       </nav>
