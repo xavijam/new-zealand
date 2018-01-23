@@ -39,6 +39,8 @@ _.extend(Trip.prototype, {
 	},
 
 	_setScenes: function () {
+		var tripMapSelector = '.js-tripmap';
+
 		new ScrollMagic.Scene({
 				triggerElement: '.js-fakeNavigation',
 				triggerHook: 'onLeave'
@@ -61,7 +63,7 @@ _.extend(Trip.prototype, {
 
 		var windowWidth = $(window).outerWidth();
 		var windowHeight = $(window).outerHeight();
-		var mapHeight = $('.js-map').outerHeight();
+		var mapHeight = $(tripMapSelector).outerHeight();
 		var mapOffset = windowWidth > windowHeight || windowWidth > 920 ? -((windowHeight - mapHeight) / 2) : 0;
 
 		this.mapScene = new ScrollMagic.Scene({
@@ -69,7 +71,7 @@ _.extend(Trip.prototype, {
 				triggerHook: 'onLeave',
 				offset: mapOffset
 			})
-			.setPin('.js-map')
+			.setPin(tripMapSelector)
 			.addTo(this.controller);
 	},
 
@@ -88,7 +90,7 @@ _.extend(Trip.prototype, {
 	_initTripMap: function () {
 		this.map = new TripMap({
 			day: this.day,
-			el: '.js-map'
+			el: '.js-tripmap'
 		});
 	},
 

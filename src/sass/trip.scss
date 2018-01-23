@@ -85,6 +85,7 @@
   list-style: none;
   text-align: right;
   z-index: 1;
+  overflow: hidden;
 }
 
 .Trip-headerInfoItem {
@@ -349,16 +350,30 @@
   fill: rgba(red, 0.2);
 }
 
-.Trip-point {
+.Trip-placePoint {
   fill: $main-color;
   stroke: #FFF;
   stroke-width: 1.5;
 }
 
-.Trip-label {
+.Trip-placeLabel {
+  fill: rgba($base-grey, 0.7);
   font-size: 10px;
   font-weight: bold;
-  fill: $light-grey;
+}
+
+$blue: #4484D5;
+.Trip-lakePath {
+  fill: rgba($blue, 0.1);
+  stroke: $blue;
+  stroke-width: 0.4;
+}
+
+.Trip-lakeLabel {
+  fill: rgba($blue, 0.7);
+  font-size: 10px;
+  font-weight: bold;
+  font-style: italic;
 }
 
 .medium-zoom-image,

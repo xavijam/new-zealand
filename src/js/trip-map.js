@@ -47,36 +47,44 @@ _.extend(Map.prototype, {
 
 	_renderPlaces: function (error, data) {
 		var projection = this.projection;
-		var features = this.svg.selectAll('circle')
-      .data(data.features)
-      .enter();
 
-    features
+    var lakes = this.svg.selectAll('path')
+      .data(data.features)
+      .enter()
+      .filter(d => d.type === 'lake');
+
+    lakes
+      .append('path')
+      .attr('d', d => this.path(d.geojson))
+      .attr('class', 'Trip-lakePath');
+
+    lakes
+    	.append('text')
+    	.attr('class', 'Trip-lakeLabel')
+      .attr('x', d => d.offset[0] + this.path.centroid(d.geojson)[0])
+			.attr('y', d => d.offset[1] + this.path.centroid(d.geojson)[1])
+			.style('text-anchor', d => d.anchor || 'start')
+      .text(d => d.name);
+
+    var places = this.svg.selectAll('circle')
+      .data(data.features)
+      .enter()
+      .filter(d => d.type === 'place');
+
+    places
       .append('circle')
-      .attr('class', 'Trip-point')
-      .attr('transform', function (d) {
-      	return 'translate(' + projection(d.lngLat) + ')';
-      })
+      .attr('class', 'Trip-placePoint')
+      .attr('transform', d => 'translate(' + projection(d.lngLat) + ')')
       .attr('r', '4px');
 
-    features
+    places
     	.append('text')
-    	.attr('class', 'Trip-label')
-    	.attr('transform', function (d) {
-      	return 'translate(' + projection(d.lngLat) + ')';
-      })
-      .style('text-anchor', function (d) {
-      	return d.anchor || 'start';
-      })
-      .attr('x', function (d) {
-      	return d.offset && d.offset[0] || '0';
-      })
-      .attr('y', function (d) {
-      	return d.offset && d.offset[1] || '0';
-      })
-      .text(function (d) {
-      	return d.name;
-      });
+    	.attr('class', 'Trip-placeLabel')
+    	.attr('transform', d => 'translate(' + projection(d.lngLat) + ')')
+      .style('text-anchor', d => d.anchor || 'start')
+      .attr('x', d => (d.offset && d.offset[0]) || '0')
+      .attr('y', d => (d.offset && d.offset[1]) || '0')
+      .text(d => d.name);
 	},
 
 	_renderPath: function (data) {
