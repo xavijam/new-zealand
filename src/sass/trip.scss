@@ -1,8 +1,11 @@
 @import 'vars';
 
+$place-color: #705037;
+$lake-color: #4484D5;
+$city-color: $base-grey;
+
 .Trip {
   position: relative;
-  margin: 10px;
 }
 
 .Trip-header {
@@ -12,7 +15,7 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 70vh;
+  height: 75vh;
   min-height: 650px;
   margin: 0;
   padding: 0;
@@ -26,7 +29,6 @@
   height: 100%;
   z-index: 0;
   overflow: hidden;
-  border-radius: 4px;
 }
 
 .Trip-headerBkg img {
@@ -351,29 +353,47 @@
 }
 
 .Trip-placePoint {
-  fill: $main-color;
+  fill: $place-color;
+  stroke: #FFF;
+  stroke-width: 1.5;
+}
+
+.Trip-cityPoint {
+  fill: $city-color;
   stroke: #FFF;
   stroke-width: 1.5;
 }
 
 .Trip-placeLabel {
-  fill: rgba($base-grey, 0.7);
-  font-size: 10px;
-  font-weight: bold;
+  fill: rgba($place-color, 0.9);
+  font-size: 11px;
+  font-weight: 400;
 }
 
-$blue: #4484D5;
+.Trip-cityLabel {
+  fill: rgba($city-color, 0.9);
+  font-size: 11px;
+  font-weight: 400;
+}
+
 .Trip-lakePath {
-  fill: rgba($blue, 0.1);
-  stroke: $blue;
+  fill: rgba($lake-color, 0.1);
+  stroke: rgba($lake-color, 0.3);
   stroke-width: 0.4;
 }
 
 .Trip-lakeLabel {
-  fill: rgba($blue, 0.7);
-  font-size: 10px;
-  font-weight: bold;
+  fill: rgba($lake-color, 0.7);
+  font-size: 11px;
+  font-weight: normal;
   font-style: italic;
+}
+
+.Trip-kayakPath {
+  fill: none;
+  stroke-width: 1;
+  stroke: $lake-color;
+  stroke-dasharray: 2,4;
 }
 
 .medium-zoom-image,

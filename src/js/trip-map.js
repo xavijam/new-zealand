@@ -46,45 +46,52 @@ _.extend(Map.prototype, {
 	},
 
 	_renderPlaces: function (error, data) {
+		if (error) {
+			return true;
+		}
+
 		var projection = this.projection;
 
-    var lakes = this.svg.selectAll('path')
+    var rest = this.svg.selectAll('path')
       .data(data.features)
       .enter()
-      .filter(d => d.type === 'lake');
+      .filter(d => d.type !== 'city' && d.type !== 'place' );
 
-    lakes
+    rest
       .append('path')
       .attr('d', d => this.path(d.geojson))
-      .attr('class', 'Trip-lakePath');
+      .attr('class', d => 'Trip-' + d.type + 'Path');
 
-    lakes
+    rest
     	.append('text')
-    	.attr('class', 'Trip-lakeLabel')
+    	.attr('class', d => 'Trip-' + d.type + 'Label')
       .attr('x', d => d.offset[0] + this.path.centroid(d.geojson)[0])
 			.attr('y', d => d.offset[1] + this.path.centroid(d.geojson)[1])
 			.style('text-anchor', d => d.anchor || 'start')
       .text(d => d.name);
 
-    var places = this.svg.selectAll('circle')
+    var point = this.svg.selectAll('circle')
       .data(data.features)
       .enter()
-      .filter(d => d.type === 'place');
+      .filter(d => d.type === 'place' || d.type === 'city');
 
-    places
+    point
       .append('circle')
-      .attr('class', 'Trip-placePoint')
+      .attr('class', d => 'Trip-' + d.type + 'Point')
       .attr('transform', d => 'translate(' + projection(d.lngLat) + ')')
       .attr('r', '4px');
 
-    places
+    point
     	.append('text')
-    	.attr('class', 'Trip-placeLabel')
+    	.attr('class', d => 'Trip-' + d.type + 'Label')
     	.attr('transform', d => 'translate(' + projection(d.lngLat) + ')')
       .style('text-anchor', d => d.anchor || 'start')
       .attr('x', d => (d.offset && d.offset[0]) || '0')
       .attr('y', d => (d.offset && d.offset[1]) || '0')
-      .text(d => d.name);
+      .attr('dx', 0)
+      .attr('dy', 0)
+      .text(d => d.name)
+      .call(this._wrapText, 50, 11);
 	},
 
 	_renderPath: function (data) {
@@ -136,6 +143,53 @@ _.extend(Map.prototype, {
 	      .ease(d3.easeLinear)
 	      .attr('stroke-dashoffset', this._getStrokeDashoffset());
 	  }
+	},
+
+	_wrapText: function (texts, width, lineHeight) {
+		texts.each(function() {
+      var text = d3.select(this);
+      var words = text.text().split(/\s+/).reverse();
+
+      var word = null;
+      var line = [];
+      var lineNumber = 0;
+
+      var x = text.attr('x');
+      var y = text.attr('y');
+
+      var dx = parseFloat(text.attr('dx'));
+      var dy = parseFloat(text.attr('dy'));
+
+      var tspan = text.text(null)
+        .append('tspan')
+        .attr('x', x)
+        .attr('y', y)
+        .attr('dx', dx + 'px')
+        .attr('dy', dy + 'px');
+
+      while (word = words.pop()) {
+        line.push(word);
+        tspan.text(line.join(' '));
+
+        if (tspan.node().getComputedTextLength() > width) {
+          line.pop();
+          tspan.text(line.join(' '));
+          line = [word];
+
+          lineNumber += 1;
+
+          tspan = text.append('tspan')
+            .attr('x', x)
+            .attr('y', y)
+            .attr('dx', dx + 'px')
+            .attr('dy', lineNumber * lineHeight)
+            .attr('text-anchor', 'begin')
+            .text(word);
+        }
+      }
+
+
+    });
 	}
 
 });

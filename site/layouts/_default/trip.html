@@ -53,7 +53,7 @@
             </a>
           {{ end }}
 
-          {{ range (where $.Site.Pages ".Type" "trip").ByParam "day" }}
+          {{ range sort ((where $.Site.Pages ".Type" "trip").ByParam "day") ".Params.day" "asc" }}
             {{ if .Params.day }}
               <a href="{{ .URL }}" class="Trip-navigationItem {{ if eq .Params.day $.Params.day }} is-selected {{ else }} js-tippy {{ end }}" data-tippy-theme="light bordered" data-tippy-arrow="true" data-tippy-distance="15" title="{{ .Title}}">{{ .Params.day }}</a>
             {{ end }}
