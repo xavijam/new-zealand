@@ -2,6 +2,9 @@ import $ from 'jquery';
 import * as d3 from 'd3';
 import _ from 'lodash';
 
+var DEFAULT_MOUNTAIN_SIZE = 5;
+var MAX_MOUNTAIN_SIZE = 10;
+
 var Map = function (params) {
 	this.day = params.day;
 	this.el = params.el;
@@ -51,26 +54,69 @@ _.extend(Map.prototype, {
 		}
 
 		var projection = this.projection;
+    var g0 = this.svg
+      .append('g')
+      .attr('class', 'mountains');
 
-    var rest = this.svg.selectAll('path')
+    var mountains = g0.selectAll('g.dataObject')
       .data(data.features)
       .enter()
-      .filter(d => d.type !== 'city' && d.type !== 'place' );
+      .filter(d => d.type === 'mountains');
 
-    rest
+    // Pattern
+    var mountainsData = mountains.data(0)[0] || {};
+    var $pattern = $('#triangle');
+    mountainsData.size = mountainsData.size || DEFAULT_MOUNTAIN_SIZE;
+    mountainsData.patternUnits = 'userSpaceOnUse';
+
+    var mS = Math.min(mountainsData.size, MAX_MOUNTAIN_SIZE);
+
+    $pattern
+      .attr('width', mountainsData.size)
+      .attr('height', mountainsData.size)
+      .attr('patternContentUnits', mountainsData.patternUnits)
+    $pattern.find('polyline')
+      .attr('points', '0,' + mS + ' ' + mS/2 + ',' + ((mS/2)-1) + ' ' + mS + ',' + mS)
+
+    mountains
+      .selectAll('rect')
+      .data(d => d.geojson.features)
+      .enter()
+      .append('rect')
+      .attr('x', -(mountainsData.size/2))
+      .attr('y', -(mountainsData.size/2))
+      .attr('width', mountainsData.size)
+      .attr('height', mountainsData.size)
+      .attr('transform', d => 'translate(' + projection(d.geometry.coordinates) + ')')
+      .style('fill', 'url(#triangle)');
+
+    var g1 = this.svg
+      .append('g')
+      .attr('class', 'lakes');
+
+    var lakes = g1.selectAll('path')
+      .data(data.features)
+      .enter()
+      .filter(d => d.type === 'lake');
+
+    lakes
       .append('path')
       .attr('d', d => this.path(d.geojson))
       .attr('class', d => 'Trip-' + d.type + 'Path');
 
-    rest
-    	.append('text')
-    	.attr('class', d => 'Trip-' + d.type + 'Label')
+    lakes
+      .append('text')
+      .attr('class', d => 'Trip-' + d.type + 'Label')
       .attr('x', d => d.offset[0] + this.path.centroid(d.geojson)[0])
-			.attr('y', d => d.offset[1] + this.path.centroid(d.geojson)[1])
-			.style('text-anchor', d => d.anchor || 'start')
+      .attr('y', d => d.offset[1] + this.path.centroid(d.geojson)[1])
+      .style('text-anchor', d => d.anchor || 'start')
       .text(d => d.name);
 
-    var point = this.svg.selectAll('circle')
+    var g2 = this.svg
+      .append('g')
+      .attr('class', 'places');
+
+    var point = g2.selectAll('circle')
       .data(data.features)
       .enter()
       .filter(d => d.type === 'place' || d.type === 'city');
@@ -187,11 +233,8 @@ _.extend(Map.prototype, {
             .text(word);
         }
       }
-
-
     });
 	}
-
 });
 
 module.exports = Map;

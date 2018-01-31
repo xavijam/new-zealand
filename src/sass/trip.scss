@@ -1,7 +1,8 @@
 @import 'vars';
 
 $place-color: #705037;
-$lake-color: #4484D5;
+$lake-color: #E9EEF1;
+$lake-label: #4484D5;
 $city-color: $base-grey;
 
 .Trip {
@@ -368,6 +369,7 @@ $city-color: $base-grey;
   fill: rgba($place-color, 0.9);
   font-size: 11px;
   font-weight: 400;
+  font-style: italic;
 }
 
 .Trip-cityLabel {
@@ -377,13 +379,13 @@ $city-color: $base-grey;
 }
 
 .Trip-lakePath {
-  fill: rgba($lake-color, 0.1);
-  stroke: rgba($lake-color, 0.3);
+  fill: $lake-color;
+  stroke: darken($lake-color, 15);
   stroke-width: 0.4;
 }
 
 .Trip-lakeLabel {
-  fill: rgba($lake-color, 0.7);
+  fill: rgba($lake-label, 0.7);
   font-size: 11px;
   font-weight: normal;
   font-style: italic;
